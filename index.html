@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive images demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0 auto; max-width: 960px; padding: 1rem; line-height: 1.5; }
+    img { max-width: 100%; height: auto; display: block; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  </style>
+</head>
+<body>
+  <h1>Responsive images demo</h1>
+  <p>Open DevTools, switch to the Network panel and resize the window to see which file is downloaded.</p>
+
+  <!-- Hero: <picture> with art direction (portrait crop on small screens) and modern formats.
+       Not lazy-loaded, and marked as high priority because it is the likely LCP element. -->
+  <picture>
+    <source media="(max-width: 640px)" type="image/avif"
+            srcset="images/dist/hero-portrait-400.avif 400w, images/dist/hero-portrait-800.avif 800w"
+            sizes="100vw">
+    <source media="(max-width: 640px)" type="image/webp"
+            srcset="images/dist/hero-portrait-400.webp 400w, images/dist/hero-portrait-800.webp 800w"
+            sizes="100vw">
+    <source type="image/avif"
+            srcset="images/dist/hero-800.avif 800w, images/dist/hero-1200.avif 1200w, images/dist/hero-1600.avif 1600w"
+            sizes="(min-width: 1024px) 960px, 100vw">
+    <source type="image/webp"
+            srcset="images/dist/hero-800.webp 800w, images/dist/hero-1200.webp 1200w, images/dist/hero-1600.webp 1600w"
+            sizes="(min-width: 1024px) 960px, 100vw">
+    <img src="images/dist/hero-800.jpg" width="1600" height="900"
+         fetchpriority="high" alt="Stylized landscape with mountains and a sun">
+  </picture>
+
+  <h2>Cards (lazy-loaded)</h2>
+  <div class="grid">
+    <!-- Repeat this card to see lazy loading in the Network panel. -->
+    <div class="card">
+      <img src="images/dist/card-400.jpg"
+           srcset="images/dist/card-400.jpg 400w, images/dist/card-800.jpg 800w"
+           sizes="(min-width: 640px) 220px, 100vw"
+           width="400" height="300" loading="lazy" decoding="async"
+           alt="Stylized card image with mountains">
+    </div>
+  </div>
+</body>
+</html>
