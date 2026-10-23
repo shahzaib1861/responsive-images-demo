@@ -1,0 +1,14 @@
+{
+  "name": "responsive-images-demo",
+  "version": "1.0.0",
+  "description": "Demo project for preparing responsive images: build script, srcset, picture and lazy loading.",
+  "type": "module",
+  "scripts": {
+    "build": "node build-images.mjs",
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  },
+  "license": "MIT"
+}
